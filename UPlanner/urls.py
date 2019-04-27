@@ -19,5 +19,5 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('UPCalendar.urls')),
-    path('api/auth/', include('knox.urls'))
+    path('auth/', include('knox.urls'))
 ]

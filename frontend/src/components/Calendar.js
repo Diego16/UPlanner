@@ -8,7 +8,6 @@ import rrulePlugin from '@fullcalendar/rrule';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import Modal from './Modal';
 import Navbar from './Navbar';
-import './main.scss';
 
 
 export default class DemoApp extends React.Component {
@@ -16,7 +15,8 @@ export default class DemoApp extends React.Component {
   calendarComponentRef = React.createRef()
   state = {
     calendarEvents: 'http://localhost:8000/events',
-    isModalOpen: false
+    isModalOpen: false,
+    start: new Date()
   }
 
   render() {
@@ -42,7 +42,7 @@ export default class DemoApp extends React.Component {
             dateClick={this.handleDateClick}
           />
           <Modal show={this.state.isModalOpen}
-            onClose={this.toggleModal}>
+            onClose={this.toggleModal} start={this.state.start}>
           </Modal>
         </div>
       </div>
@@ -55,9 +55,15 @@ export default class DemoApp extends React.Component {
     })
   }
 
+  toggleStart = (date) => {
+    this.setState({
+      start: date
+    })
+  }
+
   handleDateClick = (arg) => {
+    this.toggleStart(arg.date)
     this.toggleModal()
-    this.props.start=arg.date
   }
 
 }

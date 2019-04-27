@@ -7,7 +7,6 @@ registerLocale("es", es)
 class Modal extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             isAllDayChecked: false,
             isRecurrent: false,
@@ -110,7 +109,7 @@ class Modal extends React.Component {
                                             locale="es"
                                             className="form-control"
                                             id="endDate"
-                                            selectsStart
+                                            selectsEnd
                                             selected={this.state.endDate}
                                             startDate={this.state.startDate}
                                             endDate={this.state.endDate}
@@ -180,6 +179,7 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
     onClose: PropTypes.func.isRequired,
+    start: PropTypes.instanceOf(Date),
     show: PropTypes.bool,
     children: PropTypes.node,
 };

@@ -4,7 +4,7 @@ curl --request POST \
 --url http://localhost:8000/auth/register/ \
 --header 'content-type: application/json' \
 --data '{
-  "username": "test_user",
+  "username": "test_user@tester.test",
   "password": "test_pwd"
 }'
 
@@ -15,7 +15,7 @@ curl --request POST \
   --url http://localhost:8000/users/auth/login/ \
   --header 'content-type: application/json' \
   --data '{
-    "username": "test_user",
+    "username": "test_user@tester.test",
     "password": "test_pwd"
 }'
 

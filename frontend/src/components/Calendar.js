@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FullCalendar from '@fullcalendar/react';
 import esLocale from '@fullcalendar/core/locales/es';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -8,13 +9,18 @@ import rrulePlugin from '@fullcalendar/rrule';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import Modal from './Modal';
 import Navbar from './Navbar';
+import { events, auth } from "../actions";
 
 
-export default class DemoApp extends React.Component {
+class Calendar extends Component {
+
+  componentDidMount() {
+    this.props.fetchEvents();
+  }
 
   calendarComponentRef = React.createRef()
   state = {
-    calendarEvents: 'http://localhost:8000/events',
+    updateEventId: null,
     isModalOpen: false,
     start: new Date()
   }
@@ -38,7 +44,7 @@ export default class DemoApp extends React.Component {
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, rrulePlugin, bootstrapPlugin]}
             ref={this.calendarComponentRef}
-            events={this.state.calendarEvents}
+            events={this.state.events}
             dateClick={this.handleDateClick}
           />
           <Modal show={this.state.isModalOpen}
@@ -67,3 +73,30 @@ export default class DemoApp extends React.Component {
   }
 
 }
+const mapStateToProps = state => {
+  return {
+    events: state.events,
+    user: state.auth.user,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchEvents: () => {
+      dispatch(events.fetchEvents());
+    },
+    addEvent: (text) => {
+      return dispatch(events.addEvent(text));
+    },
+    updateEvent: (id, text) => {
+      return dispatch(events.updateEvent(id, text));
+    },
+    deleteEvent: (id) => {
+      dispatch(events.deleteEvent(id));
+    },
+    logout: () => dispatch(auth.logout()),
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

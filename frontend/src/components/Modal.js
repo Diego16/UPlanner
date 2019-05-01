@@ -20,16 +20,17 @@ class Modal extends React.Component {
         }
 
         return (
-                <div className="modal-backdrop">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title">Crear evento</h5>
-                                <button type="button" className="close" onClick={this.props.onClose} data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
+            <div className="modal-backdrop">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Crear evento</h5>
+                            <button type="button" className="close" onClick={this.props.onClose} data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <form>
                                 <div className="form-group">
                                     <label className="col-form-label" htmlFor="title">Título del evento</label>
                                     <input type="text" className="form-control" placeholder="Título del evento" id="title" />
@@ -119,14 +120,15 @@ class Modal extends React.Component {
                                         />
                                     </div>
                                 </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary" onClick={this.createEvent}>Guardar</button>
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.props.onClose}>Cancelar</button>
-                            </div>
+                            </form>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="submit" className="btn btn-primary" onClick={this.createEvent}>Guardar</button>
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.props.onClose}>Cancelar</button>
                         </div>
                     </div>
                 </div>
+            </div>
         );
     }
     toggleAllDay = () => {

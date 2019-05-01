@@ -10,9 +10,9 @@ import thunk from 'redux-thunk';
 import { auth } from './actions';
 import calendarApp from './reducers';
 
-import NotFound from '';
-import Register from '';
-import Login from '';
+import NotFound from './components/NotFound';
+import Register from './components/Register';
+import Login from './components/Login';
 import Calendar from './components/Calendar'
 
 let store = createStore(calendarApp, applyMiddleware(thunk));

@@ -22,7 +22,10 @@ class Navbar extends React.Component {
                             <a className="nav-link" href="http://localhost:3000/">Eventos universitarios</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link my-2 my-sm-0" href="http://localhost:3000/">Cerrar sesión</a>
+                        {this.props.user.username}
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link my-2 my-sm-0" onClick={this.props.logout}>Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>

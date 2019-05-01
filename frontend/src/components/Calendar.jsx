@@ -30,7 +30,6 @@ class Calendar extends Component {
       <div className='app'>
         <div className='top'>
           <Navbar show="true" />
-          <button className="btn btn-primary" onClick={this.toggleModal}>Open Modal</button>&nbsp;
         </div>
         <div className='calendar'>
           <FullCalendar
@@ -44,7 +43,7 @@ class Calendar extends Component {
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, rrulePlugin, bootstrapPlugin]}
             ref={this.calendarComponentRef}
-            events={this.state.events}
+            events={this.props.events}
             dateClick={this.handleDateClick}
           />
           <Modal show={this.state.isModalOpen}

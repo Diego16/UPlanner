@@ -1,5 +1,6 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { auth } from "../actions";
 
 class Navbar extends React.Component {
     render() {
@@ -22,10 +23,10 @@ class Navbar extends React.Component {
                             <a className="nav-link" href="http://localhost:3000/">Eventos universitarios</a>
                         </li>
                         <li className="nav-item">
-                        {this.props.user.username}
+                            {/* {this.props.user.username} */}
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link my-2 my-sm-0" onClick={this.props.logout}>Cerrar sesión</a>
+                            <a className="nav-link my-2 my-sm-0" href="http://localhost:3000/login" onClick={this.props.logout}>Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -33,4 +34,15 @@ class Navbar extends React.Component {
         )
     }
 }
-export default Navbar;
+const mapStateToProps = state => {
+    return {
+        user: state.auth.user,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(auth.logout()),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -151,6 +151,7 @@ class Modal extends React.Component {
             endDate: date,
         });
     }
+    
     createEvent = () => {
         return fetch('http://localhost:8000/create_event', {
             method: "POST",

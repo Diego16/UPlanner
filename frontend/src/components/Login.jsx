@@ -22,9 +22,9 @@ class Login extends Component {
             return <Redirect to="/" />
         }
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} className="content">
                 <fieldset>
-                    <legend>Login</legend>
+                    <legend>UPlanner</legend>
                     {this.props.errors.length > 0 && (
                         <ul>
                             {this.props.errors.map(error => (
@@ -37,11 +37,11 @@ class Login extends Component {
                         <input type="email" className="form-control" id="username" onChange={e => this.setState({ username: e.target.value })} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">Contraseña</label>
                         <input type="password" className="form-control" id="password" onChange={e => this.setState({ password: e.target.value })} />
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">Login</button>
+                        <button type="submit" className="btn btn-primary">Ingresar</button>
                     </div>
                     <p>¿No estás registrado? <Link to="/register">Regístrate</Link></p>
                 </fieldset>

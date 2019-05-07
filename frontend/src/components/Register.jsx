@@ -22,7 +22,7 @@ class Register extends Component {
             return <Redirect to="/" />
         }
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} className="content">
                 <fieldset>
                     <legend>Regístrate</legend>
                     <div className="form-group">
@@ -36,7 +36,7 @@ class Register extends Component {
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">Registrarme</button>
                     </div>
-                    <p>¿Ya estás registrado? <Link to="/login">Login</Link></p>
+                    <p>¿Ya estás registrado? <Link to="/login">Ingresa</Link></p>
                 </fieldset>
             </form>
         )

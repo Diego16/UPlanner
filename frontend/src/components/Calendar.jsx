@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import { Redirect } from "react-router-dom";
 import FullCalendar from '@fullcalendar/react';
 import esLocale from '@fullcalendar/core/locales/es';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -26,12 +27,15 @@ class Calendar extends Component {
   }
 
   render() {
+    // if (!this.props.isAuthenticated) {
+    //   return <Redirect to="/login" />
+    // }
     return (
       <div className='app'>
         <div className='top'>
           <Navbar show="true" />
         </div>
-        <div className='calendar'>
+        <div className='content'>
           <FullCalendar
             defaultView="timeGridWeek"
             themeSystem="bootstrap"
@@ -83,15 +87,6 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchEvents: () => {
       dispatch(events.fetchEvents());
-    },
-    addEvent: (text) => {
-      return dispatch(events.addEvent(text));
-    },
-    updateEvent: (id, text) => {
-      return dispatch(events.updateEvent(id, text));
-    },
-    deleteEvent: (id) => {
-      dispatch(events.deleteEvent(id));
     },
     logout: () => dispatch(auth.logout()),
   }

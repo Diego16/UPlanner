@@ -38,6 +38,7 @@ class LoginAPI(generics.GenericAPIView):
 
 
 class UserAPI(generics.RetrieveAPIView):
+
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = UserSerializer
 
@@ -55,6 +56,7 @@ class StudentsAPI(APIView):
 
 class EventsAPI(APIView):
 
+    permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = EventSerializer
 
     def get(self, request):

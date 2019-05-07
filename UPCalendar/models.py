@@ -18,7 +18,9 @@ class Event(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     url = models.URLField(null=True)
+    user = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
 
 
 class Task(models.Model):
     title = models.CharField(max_length=100, null=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)

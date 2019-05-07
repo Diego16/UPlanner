@@ -1,7 +1,7 @@
 Create a user
 
 curl --request POST \
---url http://localhost:8000/auth/register/ \
+--url http://localhost:8000/register \
 --header 'content-type: application/json' \
 --data '{
   "username": "test_user@tester.test",
@@ -12,7 +12,7 @@ curl --request POST \
 Login a user:
 
 curl --request POST \
-  --url http://localhost:8000/users/auth/login/ \
+  --url http://localhost:8000/login \
   --header 'content-type: application/json' \
   --data '{
     "username": "test_user@tester.test",

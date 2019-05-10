@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import es from "date-fns/locale/es";
-registerLocale("es", es)
+
+registerLocale("es", es);
 
 class Modal extends React.Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class Modal extends React.Component {
                                     <label className="col-form-label" htmlFor="title">Título del evento</label>
                                     <input type="text" className="form-control" placeholder="Título del evento" id="title" />
                                 </div>
-                                <div className="form-group form-row">
+                                <div className="form-group form-inline">
                                     <div className="custom-control custom-switch">
                                         <input type="checkbox" className="custom-control-input form-control" id="allDay" onChange={this.toggleAllDay} checked={this.state.isAllDayChecked} />
                                         <label className="custom-control-label" htmlFor="allDay">Todo el día</label>
@@ -47,6 +48,29 @@ class Modal extends React.Component {
                                 </div>
                                 <div className="form-group" hidden={!this.state.isRecurrent}>
                                     <label className="col-form-label" htmlFor="rrule">Frecuencia</label>
+                                    <div class="btn-group btn-group-toggle" id="rrule" data-toggle="buttons">
+                                        <label className="btn btn-primary active">
+                                            <input type="checkbox" checked="" autocomplete="off"/>Lunes
+                                        </label>
+                                        <label className="btn btn-primary active">
+                                            <input type="checkbox" autocomplete="off" />Martes
+                                        </label>
+                                        <label className="btn btn-primary active">
+                                            <input type="checkbox" autocomplete="off" />Miércoles
+                                        </label>
+                                        <label className="btn btn-primary active">
+                                            <input type="checkbox" autocomplete="off" />Jueves
+                                        </label>
+                                        <label className="btn btn-primary active">
+                                            <input type="checkbox" autocomplete="off" />Viernes
+                                        </label>
+                                        <label className="btn btn-primary active">
+                                            <input type="checkbox" autocomplete="off" />Sábado
+                                        </label>
+                                        <label className="btn btn-primary active">
+                                            <input type="checkbox" autocomplete="off" />Domingo
+                                        </label>
+                                    </div>
                                 </div>
                                 <div className="form-group">
                                     <label className="col-form-label" htmlFor="startDate">Inicio del evento</label>
@@ -78,7 +102,7 @@ class Modal extends React.Component {
                                             selected={this.state.endDate}
                                             startDate={this.state.startDate}
                                             endDate={this.state.endDate}
-                                            onChange={this.handleEndChange}
+                                            onChange={this.handleStartChange}
                                             isClearable={true}
                                             placeholderText="Fecha"
                                         />
@@ -151,7 +175,7 @@ class Modal extends React.Component {
             endDate: date,
         });
     }
-    
+
     createEvent = () => {
         return fetch('http://localhost:8000/create_event', {
             method: "POST",

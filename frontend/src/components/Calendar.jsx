@@ -32,9 +32,6 @@ class Calendar extends Component {
     // }
     return (
       <div className='app'>
-        <div className='top'>
-          <Navbar show="true" />
-        </div>
         <div className='content'>
           <FullCalendar
             defaultView="timeGridWeek"
@@ -55,7 +52,7 @@ class Calendar extends Component {
           </Modal>
         </div>
       </div>
-    )
+    );
   }
 
   toggleModal = () => {

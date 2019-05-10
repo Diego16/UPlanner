@@ -46,7 +46,7 @@ class Login extends Component {
                     <p>¿No estás registrado? <Link to="/register">Regístrate</Link></p>
                 </fieldset>
             </form>
-        )
+        );
     }
 }
 

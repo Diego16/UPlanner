@@ -26,6 +26,14 @@ class Register extends Component {
                 <fieldset>
                     <legend>Regístrate</legend>
                     <div className="form-group">
+                        <label htmlFor="firstName">Nombres</label>
+                        <input type="name" className="form-control" id="firstName" placeholder="Nombres" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="lastName">Apellidos</label>
+                        <input type="name" className="form-control" id="lastName" placeholder="Apellidos" />
+                    </div>
+                    <div className="form-group">
                         <label htmlFor="username">Correo electrónico</label>
                         <input type="email" className="form-control" id="username" placeholder="Correo electrónico" onChange={e => this.setState({ username: e.target.value })} />
                     </div>

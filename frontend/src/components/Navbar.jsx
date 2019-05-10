@@ -17,21 +17,24 @@ class Navbar extends React.Component {
                 <div className="collapse navbar-collapse" id="navbar">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <a className="nav-link" href="http://localhost:3000/">Calendario <span className="sr-only">(current)</span></a>
+                            <a className="nav-link" href="http://localhost:3000/">Calendario</a>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item active">
                             <a className="nav-link" href="http://localhost:3000/">Eventos universitarios</a>
                         </li>
-                        <li className="nav-item">
-                            {/* {this.props.user.username} */}
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link my-2 my-sm-0" href="http://localhost:3000/login" onClick={this.props.logout}>Cerrar sesión</a>
-                        </li>
+
+                    </ul>
+                    <ul className="navbar-nav mr-ms-2">
+                    <li className="nav-item">
+                        <a className="nav-link" href="http://localhost:3000/profile">Tester McTesting</a>
+                    </li>
+                    <li className="navbar-nav">
+                        <a className="nav-link" href="http://localhost:3000/login" onClick={this.props.logout}>Cerrar sesión</a>
+                    </li>
                     </ul>
                 </div>
             </nav>
-        )
+        );
     }
 }
 const mapStateToProps = state => {

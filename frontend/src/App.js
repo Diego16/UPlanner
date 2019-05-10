@@ -13,7 +13,10 @@ import calendarApp from './reducers';
 import NotFound from './components/NotFound';
 import Register from './components/Register';
 import Login from './components/Login';
-import Calendar from './components/Calendar'
+import Calendar from './components/Calendar';
+import Admin from './components/Admin';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
 
 let store = createStore(calendarApp, applyMiddleware(thunk));
 
@@ -40,6 +43,8 @@ class RootContainerComponent extends Component {
       <BrowserRouter>
         <Switch>
           <PrivateRoute exact path="/" component={Calendar} />
+          <PrivateRoute exact path="/admin" component={Admin} />
+          <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route component={NotFound} />
@@ -69,6 +74,9 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
+        <div className='top'>
+          <Navbar show="true" />
+        </div>
         <RootContainer />
       </Provider>
     )

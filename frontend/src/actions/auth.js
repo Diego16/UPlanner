@@ -14,7 +14,7 @@ export const loadUser = () => {
         if (token) {
             headers["Authorization"] = `Token ${token}`;
         }
-        return fetch(`${base_url}/user`, { headers, })
+        return fetch(`${base_url}/user/`, { headers, })
             .then(res => {
                 if (res.status < 500) {
                     return res.json().then(data => {
@@ -44,7 +44,7 @@ export const login = (username, password) => {
         let headers = { "Content-Type": "application/json" };
         let body = JSON.stringify({ username, password });
 
-        return fetch(`${base_url}/login`, { headers, body, method: "POST" })
+        return fetch(`${base_url}/login/`, { headers, body, method: "POST" })
             .then(res => {
                 if (res.status < 500) {
                     return res.json().then(data => {
@@ -77,7 +77,7 @@ export const register = (username, password) => {
         let headers = { "Content-Type": "application/json" };
         let body = JSON.stringify({ username, password });
 
-        return fetch(`${base_url}/register`, { headers, body, method: "POST" })
+        return fetch(`${base_url}/register/`, { headers, body, method: "POST" })
             .then(res => {
                 if (res.status < 500) {
                     return res.json().then(data => {
@@ -115,7 +115,7 @@ export const logout = () => {
         if (token) {
             headers["Authorization"] = `Token ${token}`;
         }
-        return fetch(`${base_url}/auth/logout`, { headers, body: "", method: "POST" })
+        return fetch(`${base_url}/auth/logout/`, { headers, body: "", method: "POST" })
             .then(res => {
                 if (res.status === 204) {
                     return { status: res.status, data: {} };

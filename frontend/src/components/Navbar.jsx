@@ -22,7 +22,9 @@ class Navbar extends React.Component {
                         <li className="nav-item active">
                             <a className="nav-link" href="http://localhost:3000/">Eventos universitarios</a>
                         </li>
-
+                        <li className="nav-item active">
+                            <a className="nav-link" href="http://localhost:3000/tasks">Tareas</a>
+                        </li>
                     </ul>
                     <ul className="navbar-nav mr-ms-2">
                     <li className="nav-item">

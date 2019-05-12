@@ -77,7 +77,7 @@ export default class App extends Component {
         <div className='top'>
           <Navbar show="true" />
         </div>
-        <RootContainer />
+        <RootContainer className="app" />
       </Provider>
     )
   }

@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import rrulePlugin from '@fullcalendar/rrule';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import Modal from './Modal';
-import Navbar from './Navbar';
+//import Navbar from './Navbar';
 import { events, auth } from "../actions";
 
 

@@ -10,8 +10,8 @@ class Register extends Component {
     state = {
         username: "",
         password: "",
-        firstName:"",
-        lastName:""
+        firstName: "",
+        lastName: ""
     }
 
     onSubmit = e => {
@@ -29,11 +29,11 @@ class Register extends Component {
                     <legend>Regístrate</legend>
                     <div className="form-group">
                         <label htmlFor="firstName">Nombres</label>
-                        <input type="name" className="form-control" id="firstName" placeholder="Nombres" onChange={e => this.setState({ firstName: e.target.value })}/>
+                        <input type="name" className="form-control" id="firstName" placeholder="Nombres" onChange={e => this.setState({ firstName: e.target.value })} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="lastName">Apellidos</label>
-                        <input type="name" className="form-control" id="lastName" placeholder="Apellidos" onChange={e => this.setState({ lastName: e.target.value })}/>
+                        <input type="name" className="form-control" id="lastName" placeholder="Apellidos" onChange={e => this.setState({ lastName: e.target.value })} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="username">Correo electrónico</label>
@@ -68,7 +68,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        register: (username, password) => dispatch(auth.register(username, password)),
+        register: (username, password, firstName, lastName) => dispatch(auth.register(username, password, firstName, lastName)),
     };
 }
 

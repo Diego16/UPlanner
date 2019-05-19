@@ -1,25 +1,44 @@
-Create a user
+->create virtual enviroment in project root
+
+virtualenv venv
+
+->start virtual enviroment
+
+source venv/bin/activate
+
+->stop virtual enviroment
+
+deactivate
+
+-> install project requirements
+
+pip install -r requirements.txt
+
+->start server in localhost:8000
+
+python manage.py runserver
+
+->Create a user
 
 curl --request POST \
---url http://localhost:8000/register \
+--url http://localhost:8000/register/ \
 --header 'content-type: application/json' \
 --data '{
   "username": "test_user@tester.test",
   "password": "test_pwd"
-}'
+}'/
 
-
-Login a user:
+->Login a user:
 
 curl --request POST \
-  --url http://localhost:8000/login \
+  --url http://localhost:8000/login/ \
   --header 'content-type: application/json' \
   --data '{
     "username": "test_user@tester.test",
     "password": "test_pwd"
-}'
+}'/
 
-Get the current user:
+->Get the current user:
 
 curl --request GET \
   --url http://localhost:8000/users/auth/user/ \

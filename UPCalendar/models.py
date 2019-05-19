@@ -19,7 +19,7 @@ class Event(models.Model):
     allDay = models.BooleanField(default=False)
     start = models.DateTimeField()
     end = models.DateTimeField()
-    url = models.URLField(null=True)
+    color=models.CharField(max_length=7,null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     rrule = models.CharField(max_length=200, null=True)
 
@@ -29,3 +29,4 @@ class Task(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)
     start = models.DateTimeField(null=True)
     end = models.DateTimeField(null=True)
+

@@ -6,9 +6,11 @@ from django.contrib.auth.models import User
 
 
 class Student(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    workTime = models.IntegerField(null=True)
+    sleepTime = models.TimeField(null=True)
+    wakeUpTime = models.TimeField(null=True)
+    workOnWeekends = models.BooleanField(null=True)
 
 
 class Event(models.Model):
@@ -18,7 +20,7 @@ class Event(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     url = models.URLField(null=True)
-    user = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     rrule = models.CharField(max_length=200, null=True)
 
 

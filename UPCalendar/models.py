@@ -19,8 +19,9 @@ class Event(models.Model):
     allDay = models.BooleanField(default=False)
     start = models.DateTimeField()
     end = models.DateTimeField()
-    color = models.CharField(max_length=7, null=True)
+    color = models.CharField(max_length=7, default="#325d88")
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    recurrent = models.BooleanField(default=False)
     rrule = models.CharField(max_length=200, null=True)
 
 

@@ -24,7 +24,10 @@ SECRET_KEY = '4h#y4gi8c6vqg_kx8sh2u@(ll5u%7guxd__*kb(c92f5y3fh(0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'uplanerbackend.herokuapp.com'
+]
 
 # Application definition
 
@@ -34,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_extensions',
     'rest_framework',
     'knox',
     'corsheaders',

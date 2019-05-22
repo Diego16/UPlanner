@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -7,10 +8,10 @@ from django.contrib.auth.models import User
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    workTime = models.IntegerField(null=True)
-    sleepTime = models.TimeField(null=True)
-    wakeUpTime = models.TimeField(null=True)
-    workOnWeekends = models.BooleanField(null=True)
+    workTime = models.IntegerField(null=True, default=2)
+    sleepTime = models.TimeField(null=True, default=datetime.time(21, 00))
+    wakeUpTime = models.TimeField(null=True, default=datetime.time(7, 00))
+    workOnWeekends = models.BooleanField(default=True)
 
 
 class Event(models.Model):

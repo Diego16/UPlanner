@@ -14,6 +14,10 @@ deactivate
 
 pip install -r requirements.txt
 
+-> Database creation (uplanner_user must be already created)
+
+source bootstrap.sh
+
 ->start server in localhost:8000
 
 python manage.py runserver

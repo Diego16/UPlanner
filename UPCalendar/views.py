@@ -1,16 +1,14 @@
-from django.shortcuts import render
 from knox.models import AuthToken
-from rest_framework import generics, permissions
+from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-
-from UPCalendar.models import Student, Event
-from UPCalendar.serializers import StudentSerializer, CreateUserSerializer, CreateEventSerializer, EventSerializer, UserSerializer, LoginUserSerializer
+from UPCalendar.models import Student, Event, Task
+from UPCalendar.serializers import StudentSerializer, CreateUserSerializer, EventSerializer, UserSerializer, \
+    LoginUserSerializer, TaskSerializer
 
 
 class RegistrationAPI(generics.GenericAPIView):
-
     serializer_class = CreateUserSerializer
 
     def post(self, request, *args, **kwargs):
@@ -19,12 +17,12 @@ class RegistrationAPI(generics.GenericAPIView):
         user = serializer.save()
         return Response({
             'user': UserSerializer(user, context=self.get_serializer_context()).data,
+            'first_name': UserSerializer(user, context=self.get_serializer_context()).data,
             'token': AuthToken.objects.create(user)[1]
         })
 
 
 class LoginAPI(generics.GenericAPIView):
-
     serializer_class = LoginUserSerializer
 
     def post(self, request, *args, **kwargs):
@@ -38,7 +36,6 @@ class LoginAPI(generics.GenericAPIView):
 
 
 class UserAPI(generics.RetrieveAPIView):
-
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = UserSerializer
 
@@ -46,35 +43,44 @@ class UserAPI(generics.RetrieveAPIView):
         return self.request.user
 
 
-class StudentsAPI(APIView):
+class StudentViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = StudentSerializer
 
-    def get(self, request):
-        students = Student.objects.all()
-        serialized = StudentSerializer(students, many=True)
-        return Response(serialized.data)
+    def get_queryset(self):
+        return Student.objects.filter(user=self.request.user.id)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
-class EventsAPI(APIView):
-
+class UEventsAPI(APIView):
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = EventSerializer
 
     def get(self, request):
-        data = Event.objects.all()
+        data = Event.objects.filter(user=1)
         serialized = EventSerializer(data, many=True)
         return Response(serialized.data)
 
 
-class CreateEventAPI(generics.GenericAPIView):
-    serializer_class = CreateEventSerializer
+class EventViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = EventSerializer
 
-    def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        event = serializer.save()
-        return Response({
-            'id': EventSerializer(event, context=self.get_serializer_context()).data,
-            'title': EventSerializer(event, context=self.get_serializer_context()).data,
-            'start': EventSerializer(event, context=self.get_serializer_context()).data,
-            'end': EventSerializer(event, context=self.get_serializer_context()).data
-        })
+    def get_queryset(self):
+        return Event.objects.filter(user=self.request.user.id)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class TaskViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = TaskSerializer
+
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user.id)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

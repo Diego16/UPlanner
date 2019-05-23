@@ -1,11 +1,17 @@
-from django.urls import path
+from django.conf.urls import url
+from django.urls import path, include
+from rest_framework import routers
 
-from . import views
+from UPCalendar import views
+
+router = routers.DefaultRouter()
+router.register('tasks', views.TaskViewSet, 'tasks')
+router.register('events', views.EventViewSet, 'events')
+router.register('students', views.StudentViewSet, 'students')
 
 urlpatterns = [
-    path('students/', views.StudentsAPI.as_view()),
-    path('events/', views.EventsAPI.as_view()),
-    path('create_event/', views.CreateEventAPI.as_view()),
+    url('^', include(router.urls)),
+    path('uevents/', views.UEventsAPI.as_view()),
     path('register/', views.RegistrationAPI.as_view()),
     path('login/', views.LoginAPI.as_view()),
     path('user/', views.UserAPI.as_view())

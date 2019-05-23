@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 
-from UPCalendar.models import Student, Event
+from UPCalendar.models import Student, Event, Task
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -14,36 +14,33 @@ class StudentSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'first_name', 'last_name')
 
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'title', 'start', 'end')
+        fields = '__all__'
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = '__all__'
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'password')
+        fields = ('id', 'username', 'password', 'first_name', 'last_name')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(validated_data['username'], None, validated_data['password'])
+        user = User.objects.create_user(validated_data['username'], validated_data['username'],
+                                        validated_data['password'], first_name=validated_data['first_name'],
+                                        last_name=validated_data['last_name'])
+        Student.objects.create(user=user)
         return user
-
-
-class CreateEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        fields = ('title', 'allDay', 'start', 'end')
-
-    def create(self, validated_data):
-        event = Event.objects.create(title=validated_data['title'], allDay=validated_data['allDay'],
-                                     start=validated_data['start'], end=validated_data['end'])
-        return event
-
 
 class LoginUserSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -53,4 +50,4 @@ class LoginUserSerializer(serializers.Serializer):
         user = authenticate(**data)
         if user and user.is_active:
             return user
-        raise serializers.ValidationError('Unable to login with provided credentials.')
+        raise serializers.ValidationError('Correo o contraseña incorrectos, intenta de nuevo.')
